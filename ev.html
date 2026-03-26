@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How Electric Vehicles Work</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 20px;
+      background: linear-gradient(135deg, #22c55e, #3b82f6);
+      color: white;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    header p {
+      margin-top: 10px;
+      font-size: 1.2rem;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .diagram {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .node {
+      flex: 1;
+      min-width: 160px;
+      text-align: center;
+      padding: 28px 20px;
+      border-radius: 12px;
+      cursor: pointer;
+      background: #1e293b;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .node:hover {
+      background: #334155;
+    }
+
+    .node.active {
+      border-color: #22c55e;
+      background: #14532d;
+    }
+
+    .node svg.node-icon {
+      width: 96px;
+      height: 96px;
+      fill: #94a3b8;
+      transition: fill 0.3s ease;
+    }
+
+    .node:hover svg.node-icon {
+      fill: #cbd5e1;
+    }
+
+    .node.active svg.node-icon {
+      fill: #22c55e;
+    }
+
+    .node-label {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    .arrow {
+      display: flex;
+      align-items: center;
+    }
+
+    .arrow svg {
+      width: 48px;
+      height: 48px;
+      fill: #3b82f6;
+      flex-shrink: 0;
+    }
+
+    .content-box {
+      background: #1e293b;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+    }
+
+    .content-box h2 {
+      margin-top: 0;
+      color: #22c55e;
+    }
+
+    .fun-fact {
+      margin-top: 30px;
+      padding: 20px;
+      background: #172554;
+      border-left: 5px solid #3b82f6;
+      border-radius: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      color: #94a3b8;
+    }
+
+    @media (max-width: 768px) {
+      .diagram {
+        flex-direction: column;
+      }
+      .arrow svg {
+        transform: rotate(90deg);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>How Electric Vehicles Work</h1>
+  <p>A battery, a motor, and a bit of electromagnetic magic</p>
+</header>
+
+<div class="container">
+
+  <!-- Interactive Diagram -->
+  <div class="diagram">
+
+    <!-- Battery Node -->
+    <div class="node active" onclick="showStep(1)">
+      <svg class="node-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+        <rect x="4" y="14" width="52" height="36" rx="5" ry="5"/>
+        <rect x="56" y="24" width="6" height="16" rx="2" ry="2"/>
+        <rect x="14" y="22" width="8" height="20" rx="2" ry="2" fill="#0f172a"/>
+        <rect x="28" y="22" width="8" height="20" rx="2" ry="2" fill="#0f172a"/>
+        <rect x="42" y="22" width="8" height="20" rx="2" ry="2" fill="#0f172a"/>
+      </svg>
+      <span class="node-label">Battery</span>
+    </div>
+
+    <!-- Arrow -->
+    <div class="arrow">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M13.293 4.293a1 1 0 0 1 1.414 0l7 7a1 1 0 0 1 0 1.414l-7 7a1 1 0 0 1-1.414-1.414L18.586 13H3a1 1 0 1 1 0-2h15.586l-5.293-5.293a1 1 0 0 1 0-1.414z"/>
+      </svg>
+    </div>
+
+    <!-- Motor Node -->
+    <div class="node" onclick="showStep(2)">
+      <svg class="node-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="32" cy="32" r="20"/>
+        <circle cx="32" cy="32" r="8" fill="#0f172a"/>
+        <rect x="30" y="2" width="4" height="10" rx="2" ry="2" fill="#0f172a"/>
+        <rect x="30" y="52" width="4" height="10" rx="2" ry="2" fill="#0f172a"/>
+        <rect x="2" y="30" width="10" height="4" rx="2" ry="2" fill="#0f172a"/>
+        <rect x="52" y="30" width="10" height="4" rx="2" ry="2" fill="#0f172a"/>
+        <rect x="9" y="9" width="4" height="10" rx="2" ry="2" transform="rotate(45 11 14)" fill="#0f172a"/>
+        <rect x="47" y="9" width="4" height="10" rx="2" ry="2" transform="rotate(-45 49 14)" fill="#0f172a"/>
+        <rect x="9" y="45" width="4" height="10" rx="2" ry="2" transform="rotate(-45 11 50)" fill="#0f172a"/>
+        <rect x="47" y="45" width="4" height="10" rx="2" ry="2" transform="rotate(45 49 50)" fill="#0f172a"/>
+      </svg>
+      <span class="node-label">Motor</span>
+    </div>
+
+    <!-- Arrow -->
+    <div class="arrow">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M13.293 4.293a1 1 0 0 1 1.414 0l7 7a1 1 0 0 1 0 1.414l-7 7a1 1 0 0 1-1.414-1.414L18.586 13H3a1 1 0 1 1 0-2h15.586l-5.293-5.293a1 1 0 0 1 0-1.414z"/>
+      </svg>
+    </div>
+
+    <!-- Wheels/Car Node -->
+    <div class="node" onclick="showStep(3)">
+      <svg class="node-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+        <!-- Car body -->
+        <rect x="4" y="28" width="56" height="18" rx="4" ry="4"/>
+        <!-- Car roof -->
+        <path d="M14 28 L20 14 L44 14 L50 28 Z" rx="3"/>
+        <!-- Windshield cutout -->
+        <rect x="22" y="16" width="10" height="10" rx="2" fill="#0f172a"/>
+        <rect x="34" y="16" width="10" height="10" rx="2" fill="#0f172a"/>
+        <!-- Wheels -->
+        <circle cx="16" cy="46" r="8"/>
+        <circle cx="16" cy="46" r="3" fill="#0f172a"/>
+        <circle cx="48" cy="46" r="8"/>
+        <circle cx="48" cy="46" r="3" fill="#0f172a"/>
+      </svg>
+      <span class="node-label">Wheels</span>
+    </div>
+
+  </div>
+
+  <!-- Dynamic Content -->
+  <div class="content-box" id="content">
+    <h2>1. The Battery: Storing the Fuel</h2>
+    <p>
+      The battery pack is a massive array of lithium-ion cells located at the base of the car.
+      It stores energy as Direct Current (DC) electricity when charged. When you press the accelerator,
+      this energy is sent to an inverter, which converts it into Alternating Current (AC) to power the motor.
+    </p>
+  </div>
+
+  <div class="fun-fact">
+    <strong>Fun Fact:</strong>
+    When you lift your foot off the pedal, the motor reverses its role and acts as a generator.
+    It converts motion back into electricity to recharge the battery—this is called regenerative braking.
+  </div>
+
+</div>
+
+<footer>
+  © 2026 EV Technology Guide
+</footer>
+
+<script>
+  const steps = {
+    1: {
+      title: "1. The Battery: Storing the Fuel",
+      text: "The battery pack is a massive array of lithium-ion cells located at the base of the car. It stores energy as Direct Current (DC) electricity. When you accelerate, it sends power to an inverter which converts it into AC."
+    },
+    2: {
+      title: "2. The Motor: Generating Motion",
+      text: "The AC electricity powers the electric motor, creating an electromagnetic field that spins a rotor at high speeds. This produces instant torque, giving EVs their quick acceleration."
+    },
+    3: {
+      title: "3. The Wheels: Driving the Car",
+      text: "The motor connects to a single-speed gearbox that transfers rotational energy directly to the wheels, turning high-speed spin into the torque needed to move the vehicle."
+    }
+  };
+
+  function showStep(step) {
+    document.getElementById("content").innerHTML =
+      "<h2>" + steps[step].title + "</h2><p>" + steps[step].text + "</p>";
+
+    const nodes = document.querySelectorAll(".node");
+    nodes.forEach((el, index) => {
+      el.classList.remove("active");
+      if (index === step - 1) {
+        el.classList.add("active");
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
